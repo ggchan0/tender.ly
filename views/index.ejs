@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
+    <head>
   <% include ../partials/header %>
-  <head>
+
     <link rel='stylesheet' href='/stylesheets/style.css' type='text/css' />
 
     <link href='https://fonts.googleapis.com/css?family=Cabin:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <nav>
-        <ul>
-            <li><a href="about">About</a></li>
-            <li><a href="contact">Contact</a></li>
-        </ul>
-    </nav>
+    
+    <ul class="nav navbar-default nav-pills navbar-fnt navbar-backgrnd">
+        <li role="presentation" class="active"><a href="#">About</a></li>
+        <li role="presentation"><a href="#">Profile</a></li>
+        <li role="presentation"><a href="#">Contact</a></li>
+    </ul>
 
       <img class="mainLogo" src="images/mainLogoSkin.png" alt="Voluptuous">
-      <h1>Voluptuous</h1>
-
+      
+<div class="container login">
     <p>Welcome to Voluptuous</p>
     <form action="/login" method="post">
     Enter your name:
@@ -24,7 +25,7 @@
     <br>
     <button type="submit">Submit</button>
     </form>
-
+</div>
 
   </body>
 
