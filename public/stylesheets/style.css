@@ -1,8 +1,30 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Cabin:400", Helvetica, Arial, sans-serif;
+  background-image: url("/images/geometrygreen2.jpg");
+  background-repeat: repeat-x repeat-y;
+
 }
 
 a {
   color: #00B7FF;
+}
+
+.mainLogo {
+   width: 500px;
+   margin-left: auto;
+   margin-right: auto;
+   display: block;
+}
+
+nav {
+    margin-left: 80%;
+    text-decoration:none;
+
+}
+
+nav.li {
+    display: inline;
+    text-decoration: none;
+
 }

@@ -17,8 +17,7 @@ var app = express();
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-require('./config/passport')(passport);
-require('./routes/index.js')(app, passport);
+app.use(favicon(__dirname + '/public/favicon.ico'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -38,6 +37,10 @@ app.use(session({ secret: 'ilovetofu'}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+
+
+require('./config/passport')(passport);
+require('./routes/index.js')(app, passport);
 
 app.use('/', index);
 app.use('/users', users);

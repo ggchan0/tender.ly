@@ -2,15 +2,21 @@
 <html>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <head>
-    <title>Voluptuous</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' type='text/css' />
+
+    <link href='https://fonts.googleapis.com/css?family=Cabin:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <% if (typeof(data) !== 'undefined' && data.length > 0) { %>
-      <h1>Welcome <%= data %>!</h1>
-    <% } else { %>
+    <nav>
+        <ul>
+            <li><a href="about">About</a></li>
+            <li><a href="contact">Contact</a></li>
+        </ul>
+    </nav>
+
+      <img class="mainLogo" src="images/mainLogoSkin.png" alt="Voluptuous">
       <h1>Voluptuous</h1>
-    <% } %>
+
     <p>Welcome to Voluptuous</p>
     <form action="/login" method="post">
     Enter your name:
@@ -18,6 +24,8 @@
     <br>
     <button type="submit">Submit</button>
     </form>
+
+
   </body>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
