@@ -15,7 +15,7 @@ mongoose.connect(configDB.url);
 var app = express();
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var calendar = require('./routes/calendar');
 
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
@@ -40,10 +40,11 @@ app.use(flash());
 
 
 require('./config/passport')(passport);
-require('./routes/index.js')(app, passport);
+
+//call function in index route with passport
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/calendar', calendar);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
