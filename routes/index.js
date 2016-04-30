@@ -45,16 +45,6 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-router.post('/signuppost', function(req, res) {
-   var emailOne = req.body.emailOne;
-   var emailTwo = req.body.emailTwo;
-   var password = req.body.password;
-
-   if (emailOne == emailTwo) {
-
-   }
-});
-
 
 router.get('/profile', function(req, res) {
   res.render('profile');
