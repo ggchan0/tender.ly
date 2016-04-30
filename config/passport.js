@@ -10,6 +10,7 @@ module.exports = function(passport) {
   passport.serializeUser(function(user, done) {
     done(null, user.id);
   });
+
   //deserialize the user
   passport.deserializeUser(function(id, done) {
     User.findById(id, function(err, user) {
@@ -17,8 +18,8 @@ module.exports = function(passport) {
     });
   });
 
-  //
-  passport.user('local-signup', new LocalStrategy({
+  //handles signup with email and password
+  passport.use('local-signup', new LocalStrategy({
     usernameField : 'email',
     passwordField : 'password',
     passReqToCallback : true
