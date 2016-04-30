@@ -16,6 +16,7 @@ var app = express();
 
 var index = require('./routes/index');
 var calendar = require('./routes/calendar');
+var groups = require('./routes/groups');
 
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
@@ -45,6 +46,7 @@ require('./config/passport')(passport);
 
 app.use('/', index);
 app.use('/calendar', calendar);
+app.use('/groups', groups);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
