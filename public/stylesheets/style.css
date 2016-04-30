@@ -1,8 +1,9 @@
 body {
   padding: 50px;
   font: 14px "Cabin:400", Helvetica, Arial, sans-serif;
-  background: url(images/geometrygreen2.jpg) repeat-x repeat-y;
-      
+  background-image: url("/images/geometrygreen2.jpg");
+  background-repeat: repeat-x repeat-y;
+
 }
 
 a {
@@ -19,11 +20,11 @@ a {
 nav {
     margin-left: 80%;
     text-decoration:none;
-    
+
 }
 
 nav.li {
     display: inline;
     text-decoration: none;
-    
+
 }
