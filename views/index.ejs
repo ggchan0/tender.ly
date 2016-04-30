@@ -3,22 +3,41 @@
     <head>
   <% include ../partials/header %>
 
-    <link rel='stylesheet' href='/stylesheets/style.css' type='text/css' />
+    <link rel='stylesheet' href='/stylesheets/reset.css' type='text/css' />
 
-    <link href='https://fonts.googleapis.com/css?family=Cabin:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+       <link rel='stylesheet' href='/stylesheets/style.css' type='text/css' />
+<!--        <link href='../public/stylesheets/Hover-master/css/hover.css' rel='stylesheet' media='all'>-->
+        <link rel='stylesheet' href="../public/stylesheets/font-awesome-4.6.1/css/font-awesome.min.css">
+
+  <link href='https://fonts.googleapis.com/css?family=Cabin:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    
+    <!--
     <ul class="nav navbar-default nav-pills navbar-fnt navbar-backgrnd">
         <li role="presentation" class="active"><a href="#">About</a></li>
         <li role="presentation"><a href="#">Profile</a></li>
         <li role="presentation"><a href="#">Contact</a></li>
     </ul>
-
+   -->
+   <div class="navright">
+    <ul class="list-inline">
+        <li role="presentation" ><a href="#" class="icon hvr-grow" title="About">About</a></li>
+        <li role="presentation" ><a href="#" class="icon hvr-hang" title="Profile">Profile</a></li>
+        <li role="presentation" ><a href="#" class="icon hvr-hang" title="Contact">Contact</a></li>
+    </ul>
+   </div>        
+<!--
+      <nav>
+          <ul>
+              <li><a href="about.ejs">About</a></li>
+              <li><a href="profile">Profile</a></li>
+              <li><a href="contact">Contact</a></li>
+          </ul>
+      </nav>
+-->
       <img class="mainLogo" src="images/mainLogoSkin.png" alt="Voluptuous">
-      
+
 <div class="container login">
-    <p>Welcome to Voluptuous</p>
     <form action="/login" method="post">
     Enter your name:
     <input type="text" name="userName" placeholder="..." />
@@ -29,7 +48,7 @@
 
   </body>
 
-  <% include ../partials/footer %>
+
 
 
   <script src='/javascripts/test.js'></script>

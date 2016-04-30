@@ -1,6 +1,8 @@
+
 body {
   /*padding: 50px;*/
-  font-family: "Cabin:700", Helvetica, Arial, sans-serif;
+  font-family: "Cabin", Helvetica, Arial, sans-serif; 
+  font-weight: 700;
   font-size: 14px;
   background-image: url("/images/geometrygreen2.jpg");
   background-repeat: repeat;
@@ -22,9 +24,17 @@ p{
     margin-right: auto;
 }
 
-a {
-  color: #00B7FF;
+ul li a {
+  color: #999;
+  font-family: "Cabin", Helvetica, Arial, sans-serif;
+  text-decoration: none;
 }
+
+a:hover {
+    color: #80e44e; 
+    text-decoration: none;
+}
+
 
 .login {
     margin: 0 auto;
@@ -43,30 +53,21 @@ a {
     margin: center;
 }
 
-.nav {
+.navright {
+    margin-left: 86%;
     padding: 10px;
-    margin-left: 80%;
-
 }
 
-.navbar-fnt > li {
-    font-family: "Cabin", Helvetica, Arial, sans-serif;
-    color: #fff;
+ul {
+    padding: 10p ;
+    padding: 10p ;
+    list-style-type: none;
 }
 
-.navbar-default {
-    /*background-color: #b0b0b0;
-    color: green;*/
-}
-
-.nav-pills > li {
-    
-    background-color: gray;
-    color: dimgray;
-}
-
-nav.li {
+ul li {
     display: inline;
-    text-decoration: none;
-
 }
+/*.navbar-fnt > li {
+    font-family: "Cabin", Helvetica, Arial, sans-serif;
+}*/
+

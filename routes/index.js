@@ -1,38 +1,64 @@
-/*var express = require('express');
+var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+var passport = require('passport');
 
 router.use(bodyParser.json());
 
-/* GET home page.
+
 router.get('/', function(req, res, next) {
-  res.render('index');
+ res.render('index');
 });
-
+/*
 router.post('/login', function(req, res) {
-   var userName = req.body.userName;
+  var userName = req.body.userName;
 
-   res.redirect('/');//('index', { data : userName });
+  res.redirect('/');//('index', { data : userName });
 });
 */
-//module.exports = router;
+router.post('/login', passport.authenticate('local-login', {
+  successRedirect : '/calendar',
+  failureRedirect : '/login',
+  failureFlash : true
+}));
 
-module.exports = function(app, passport) {
-  app.get('/', function(req, res, next) {
-    res.render('index');
-  });
+router.get('/about', function(req, res, next) {
+  res.render('about');
+});
 
-  app.post('/login', function(req, res) {
-     var userName = req.body.userName;
+router.get('/contact', function(req, res, next) {
+  res.render('contact');
+});
 
-     res.redirect('/');//('index', { data : userName });
-  });
+router.get('/signup', function(req, res, next) {
+  res.render('signup', {message: req.flash('signupMessage')});
+});
 
-  app.get('/about', function(req, res, next) {
-     res.render('about');
-  });
+router.get('/login', function(req, res, next) {
+  res.render('login', {message: req.flash('loginMessage')});
+});
 
-  app.get('/contact', function(req, res, next) {
-     res.render('contact');
-  });
+router.post('/signup', passport.authenticate('local-signup', {
+  successRedirect : '/calendar',
+  failureRedirect : '/signup',
+  failureFlash : true
+}));
+
+router.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
+
+
+router.get('/profile', function(req, res) {
+  res.render('profile');
+});
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/');
 }
+
+module.exports = router;
