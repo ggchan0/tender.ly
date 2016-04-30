@@ -12,10 +12,12 @@ var session = require('express-session');
 var port = process.env.PORT || 8080;
 mongoose.connect(configDB.url);
 
+var app = express();
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-var app = express();
+
 //var routes = require('./routes/routes.js')(app, passport);
 
 // view engine setup
