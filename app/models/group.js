@@ -6,6 +6,6 @@ var group = mongoose.Schema({
    emails : [String]
 });
 
-var group = mongoose.model('Group', eventSchema);
+var group = mongoose.model('Group', group);
 
 module.exports = group;

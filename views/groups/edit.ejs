@@ -3,6 +3,19 @@
    </head>
    <body>
       EDIT GROUPS
+      <ul>
+      <% groupData.forEach(function(el, index) {%>
+         <li><%= el["name"];%></li>
+      <%});%>
+      </ul>
+      </br>
+      Add New Group
+      <form action="/groups/add" method="post">
+      Group Name
+      <input type="text" name="groupName" placeholder="Group Name" />
+      <br>
+      <button type="submit">Submit</button>
+      </form>
    <% include ../../partials/footer %>
    </body>
 </html>
