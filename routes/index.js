@@ -27,4 +27,14 @@ router.get('/signup', function(req, res, next) {
   res.render('signup');
 });
 
+router.post('/signuppost', function(req, res) {
+   var emailOne = req.body.emailOne;
+   var emailTwo = req.body.emailTwo;
+   var password = req.body.password;
+
+   if (emailOne == emailTwo) {
+      
+   }
+});
+
 module.exports = router;
