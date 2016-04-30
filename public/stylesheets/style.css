@@ -16,6 +16,14 @@ a {
    display: block;
 }
 
-li {
+nav {
+    margin-left: 80%;
+    text-decoration:none;
+    
+}
+
+nav.li {
     display: inline;
+    text-decoration: none;
+    
 }
