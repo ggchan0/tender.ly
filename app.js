@@ -17,8 +17,8 @@ var app = express();
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-
-//var routes = require('./routes/routes.js')(app, passport);
+require('./config/passport')(passport);
+require('./routes/index.js')(app, passport);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
