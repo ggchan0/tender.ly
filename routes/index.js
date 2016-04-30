@@ -34,9 +34,13 @@ router.get('/signup', function(req, res, next) {
   res.render('signup', {message: req.flash('signupMessage')});
 });
 
+router.get('/login', function(req, res, next) {
+  res.render('login', {message: req.flash('loginMessage')});
+});
+
 router.post('/signup', passport.authenticate('local-signup', {
   successRedirect : '/profile',
-  failureRedirect : '/signup',
+  failureRedirect : '/signupl',
   failureFlash : true
 }));
 
