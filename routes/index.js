@@ -50,9 +50,22 @@ router.get('/logout', function(req, res) {
 });
 
 
-router.get('/profile', function(req, res) {
-  res.render('profile');
+router.get('/profile', isLoggedIn, function(req, res) {
+  res.render('profile', {
+    user : req.user
+  });
 });
+
+router.get('/auth/google', passport.authenticate('google', {
+  scope : ['profile', 'email']
+}));
+
+router.get('/auth/google/callback',
+  passport.authenticate('google', {
+    successRedirect : '/profile',
+    failureRedirect : '/'
+  })
+);
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
