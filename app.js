@@ -12,7 +12,7 @@ var session = require('express-session');
 var port = process.env.PORT || 8080;
 mongoose.connect(configDB.url);
 
-var routes = require('./routes/index');
+var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
@@ -35,7 +35,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-app.use('/', routes);
+app.use('/', index);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
