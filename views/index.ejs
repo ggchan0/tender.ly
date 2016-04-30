@@ -2,12 +2,16 @@
 <html>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <head>
-    <title><%= title %></title>
+    <title>Voluptuous</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <% if (typeof(data) !== 'undefined' && data.length > 0) { %>
+      <h1>Welcome <%= data %>!</h1>
+    <% } else { %>
+      <h1>Voluptuous</h1>
+    <% } %>
+    <p>Welcome to Voluptuous</p>
     <form action="/login" method="post">
     Enter your name:
     <input type="text" name="userName" placeholder="..." />

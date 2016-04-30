@@ -6,13 +6,13 @@ router.use(bodyParser.json());
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index');
 });
 
 router.post('/login', function(req, res) {
    var userName = req.body.userName;
-   
-   res.render('/', { title : 'Varified' });
+
+   res.redirect('/');//('index', { data : userName });
 });
 
 module.exports = router;
