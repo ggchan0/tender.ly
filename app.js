@@ -9,13 +9,14 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var configDB = require('./config/database.js');
 var session = require('express-session');
-
+var port = process.env.PORT || 8080;
 mongoose.connect(configDB.url);
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+//var routes = require('./routes/routes.js')(app, passport);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -68,7 +69,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-require('./app/routes.js')(app, passport);
+
 app.listen(port);
 console.log("Magic at port " + port);
 
