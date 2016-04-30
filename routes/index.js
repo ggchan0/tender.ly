@@ -27,4 +27,12 @@ module.exports = function(app, passport) {
 
      res.redirect('/');//('index', { data : userName });
   });
+
+  app.get('/about', function(req, res, next) {
+     res.render('about');
+  });
+
+  app.get('/contact', function(req, res, next) {
+     res.render('contact');
+  });
 }
