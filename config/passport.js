@@ -2,6 +2,8 @@
 //var LocalStrategy = require('passport-local').Strategy;
 
 //read user model
+var mongoose = require('mongoose');
+
 var User = require('../app/models/user');
 
 //for google authentication
@@ -14,14 +16,12 @@ var passport = require('passport');
 
 //serialize the user for this session
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, user);
 });
 
 //deserialize the user
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
+passport.deserializeUser(function(user, done) {
+  done(null, user);
 });
 /*
   //handles signup with email and password
@@ -88,30 +88,30 @@ passport.use(new GoogleStrategy({
   function(req, accessToken, refreshToken, profile, done) {
     process.nextTick(function(){
     if (req.user) {
-      User.findOne({ id : profile.id }), function(err, existingUser) {
+      User.find({ id : profile.id }, function(err, existingUser) {
         if (existingUser) {
           req.flash('errors', { msg: "Already on here."});
-          done(err);
+          return done(err);
         }
-      }
+      }).limit(1);
     }
     // make the code asynchronous
     // User.findOne won't fire until we have all our data back from Google
 
     // try to find the user based on their google id
     else {
-      User.findOne({ 'id' : profile.id }, function(err, existingUser) {
+      User.find({ 'id' : profile.id }, function(err, existingUser) {
         if (err) {
           return done(err);
         }
         if (existingUser) {
           // if a user is found, log them in
           return done(null, existingUser);
-        }
+        } else {
         User.findOne({email: profile.emails[0].value }, function(err, user) {
           if (user) {
             req.flash('gmailMessage', {msg: "That email already exists. Please us that email."});
-            done(err);
+            return done(err);
           } else {
             // if the user isnt in our database, create a new user
             var newUser          = new User();
@@ -129,7 +129,7 @@ passport.use(new GoogleStrategy({
             });
           }
         });
-      });
+      }}).limit(1);
     }});
   }
 ));
