@@ -40,7 +40,7 @@ app.use(passport.session());
 app.use(flash());
 
 
-require('./config/passport')(passport);
+var passportConfig = require('./config/passport');
 
 //call function in index route with passport
 

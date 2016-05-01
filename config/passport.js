@@ -1,5 +1,5 @@
 //load local strategy
-var LocalStrategy = require('passport-local').Strategy;
+//var LocalStrategy = require('passport-local').Strategy;
 
 //read user model
 var User = require('../app/models/user');
@@ -10,20 +10,20 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 //get credentials
 var configAuth = require('./auth');
 
-//export this function
-module.exports = function(passport) {
-  //serialize the user for this session
-  passport.serializeUser(function(user, done) {
-    done(null, user.id);
-  });
+var passport = require('passport');
 
-  //deserialize the user
-  passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
-      done(err, user);
-    });
-  });
+//serialize the user for this session
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
 
+//deserialize the user
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+/*
   //handles signup with email and password
   passport.use('local-signup', new LocalStrategy({
     usernameField : 'email',
@@ -76,49 +76,60 @@ module.exports = function(passport) {
       return done(null, user);
     });
   }));
+  */
 
   //google's login handler
-  passport.use(new GoogleStrategy({
+passport.use(new GoogleStrategy({
+  clientID        : configAuth.googleAuth.clientID,
+  clientSecret    : configAuth.googleAuth.clientSecret,
+  callbackURL     : configAuth.googleAuth.callbackURL,
+  passReqToCallback : true
+  },
+  function(req, accessToken, refreshToken, profile, done) {
+    process.nextTick(function(){
+    if (req.user) {
+      User.findOne({ id : profile.id }), function(err, existingUser) {
+        if (existingUser) {
+          req.flash('errors', { msg: "Already on here."});
+          done(err);
+        }
+      }
+    }
+    // make the code asynchronous
+    // User.findOne won't fire until we have all our data back from Google
 
-        clientID        : configAuth.googleAuth.clientID,
-        clientSecret    : configAuth.googleAuth.clientSecret,
-        callbackURL     : configAuth.googleAuth.callbackURL,
-
-    },
-    function(token, refreshToken, profile, done) {
-
-        // make the code asynchronous
-        // User.findOne won't fire until we have all our data back from Google
-        process.nextTick(function() {
-
-            // try to find the user based on their google id
-            User.findOne({ 'google.id' : profile.id }, function(err, user) {
-                if (err)
-                    return done(err);
-
-                if (user) {
-
-                    // if a user is found, log them in
-                    return done(null, user);
-                } else {
-                    // if the user isnt in our database, create a new user
-                    var newUser          = new User();
-
-                    // set all of the relevant information
-                    newUser.google.id    = profile.id;
-                    newUser.google.token = token;
-                    newUser.google.name  = profile.displayName;
-                    newUser.google.email = profile.emails[0].value; // pull the first email
-
-                    // save the user
-                    newUser.save(function(err) {
-                        if (err)
-                            throw err;
-                        return done(null, newUser);
-                    });
-                }
+    // try to find the user based on their google id
+    else {
+      User.findOne({ 'id' : profile.id }, function(err, existingUser) {
+        if (err) {
+          return done(err);
+        }
+        if (existingUser) {
+          // if a user is found, log them in
+          return done(null, existingUser);
+        }
+        User.findOne({email: profile.emails[0].value }, function(err, user) {
+          if (user) {
+            req.flash('gmailMessage', {msg: "That email already exists. Please us that email."});
+            done(err);
+          } else {
+            // if the user isnt in our database, create a new user
+            var newUser          = new User();
+            // set all of the relevant information
+            newUser.id    = String(profile.id);
+            newUser.tokens.push({kind: 'google', accessToken: accessToken});
+            newUser.name  = profile.displayName;
+            newUser.email = profile.emails[0].value; // pull the first email
+            // save the user
+            newUser.save(function(err) {
+            if (err) {
+              throw err;
+            }
+            return done(null, newUser);
             });
+          }
         });
-
-    }));
-};
+      });
+    }});
+  }
+));

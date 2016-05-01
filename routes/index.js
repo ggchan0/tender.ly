@@ -9,18 +9,19 @@ router.use(bodyParser.json());
 router.get('/', function(req, res, next) {
  res.render('index');
 });
-/*
+
 router.post('/login', function(req, res) {
   var userName = req.body.userName;
 
   res.redirect('/');//('index', { data : userName });
 });
-*/
+/*
 router.post('/login', passport.authenticate('local-login', {
   successRedirect : '/calendar',
   failureRedirect : '/login',
   failureFlash : true
 }));
+*/
 
 router.get('/about', function(req, res, next) {
   res.render('about');
@@ -37,12 +38,13 @@ router.get('/signup', function(req, res, next) {
 router.get('/login', function(req, res, next) {
   res.render('login', {message: req.flash('loginMessage')});
 });
-
+/*
 router.post('/signup', passport.authenticate('local-signup', {
   successRedirect : '/calendar',
   failureRedirect : '/signup',
   failureFlash : true
 }));
+*/
 
 router.get('/logout', function(req, res) {
   req.logout();
@@ -56,13 +58,21 @@ router.get('/profile', isLoggedIn, function(req, res) {
   });
 });
 
+/*
+router.get('/profile', function(req, res) {
+  res.render('profile');
+});
+*/
+
 router.get('/auth/google', passport.authenticate('google', {
-  scope : ['profile', 'email']
+  scope: [
+       'https://www.googleapis.com/auth/plus.login',
+       'https://www.googleapis.com/auth/plus.profile.emails.read']
 }));
 
 router.get('/auth/google/callback',
   passport.authenticate('google', {
-    successRedirect : '/profile',
+    successRedirect : '/about',
     failureRedirect : '/'
   })
 );
