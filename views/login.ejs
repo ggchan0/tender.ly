@@ -1,8 +1,34 @@
 <html>
+    <head>
    <% include ../partials/header %>
+        
+        
+    <link rel='stylesheet' href='/stylesheets/reset.css' type='text/css' />
+
+       <link rel='stylesheet' href='/stylesheets/style.css' type='text/css' />
+        <link href='/stylesheets/Hover-master/css/hover.css' rel='stylesheet' media='all'>
+        <link rel='stylesheet' href="stylesheets/font-awesome-4.6.1/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,300,100' rel='stylesheet' type='text/css'>
+        <link href='/stylesheets/loginstyle.css' rel="stylesheet" type="text/css" />
+
+  <link href='https://fonts.googleapis.com/css?family=Cabin:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+  <script src="js/modernizr.custom.js"></script>
    </head>
    <body>
-      Login
+      <h1>Login</h1>
+       <form id="form" name="form" action="#" method="post">
+	<div id="block">
+		<label id="user" for="name">p</label>
+		<input type="text" name="name" id="name" placeholder="Username" required/>
+		<label id="pass" for="password">k</label>
+		<input type="password" name="password" id="password" placeholder="Password" required />
+		<input type="submit" id="submit" name="submit" value="a"/>
+	</div>
+</form>
+<div id="option"> 
+	<p>Sign in</p> 
+	<a href="#">forgot?</a>
+</div>
    <% include ../partials/footer %>
    </body>
 </html>

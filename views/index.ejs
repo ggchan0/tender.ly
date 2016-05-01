@@ -12,14 +12,22 @@
 
   <link href='https://fonts.googleapis.com/css?family=Cabin:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
   <script src="js/modernizr.custom.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(window).load(function() {
+	$(".loader").fadeIn(2000).delay(3000).fadeOut("slow");
+     })
+   </script>
   </head>
   <body>
 
+      <div class="loader"></div>
+
    <div class="navright">
     <ul class="list-inline">
-        <li role="presentation" ><a href="#" class="icon hvr-hang" title="About">About</a></li>
+        <li role="presentation" ><a href="about.ejs" class="icon hvr-hang" title="About">About</a></li>
         <li role="presentation" ><a href="#" class="icon hvr-hang" title="Profile">Profile</a></li>
-        <li role="presentation" ><a href="#" class="icon hvr-hang" title="Contact">Contact</a></li>
+        <li role="presentation" ><a href="contact.ejs" class="icon hvr-hang" title="Contact">Contact</a></li>
     </ul>
    </div>
     <div align="center" class="navcenter">
@@ -28,8 +36,8 @@
       <hr>
       
       <nav class="cl-effect-1">
-					<a href="#">Login</a>
-					<a href="#">Sign Up</a>
+					<a href="login.ejs">Login</a>
+					<a href="signup.ejs">Sign Up</a>
 				</nav>
     </div>  
 <!--
