@@ -26,6 +26,7 @@ router.get('/edit', function(req, res, next) {
 
 router.post('/add', function(req, res, next) {
    var gName = req.body.groupName;
+
    var newGroup = Group({
       owner : "Later",
       name : gName
@@ -36,6 +37,34 @@ router.post('/add', function(req, res, next) {
       console.log('Group created!');
    });
    res.redirect('/groups/edit');
+});
+
+router.post('/addMember/:name', function(req, res, next) {
+   var email = req.body.email;
+
+   Group.findOne({ name : req.params.name }, function(err, group) {
+   if (err) throw err;
+      if (!group.emails) {
+         group.emails = [];
+      }
+      group.emails.push(email);
+      group.save(function(err) {
+      if (err) throw err;
+         console.log('Group created!');
+      });
+      res.redirect('/groups/group/' + req.params.name);
+   });
+
+});
+
+router.get('/group/:name', function(req, res) {
+   Group.find({ name : req.params.name }, function(err, group) {
+   if (err) throw err;
+
+   // object of the user
+   console.log(group);
+      res.render('groups/page', { groupData : group });
+   });
 });
 
 

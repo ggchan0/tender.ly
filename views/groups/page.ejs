@@ -1,0 +1,22 @@
+<html>
+   <% include ../../partials/header %>
+   </head>
+   <body>
+   <h2>Edit <%= groupData[0]["name"];%></h2>
+      </br>
+      Members:
+      <ul>
+      <% groupData[0]["emails"].forEach(function(el, index) {%>
+         <li><%= el;%></li>
+      <%});%>
+      </ul>
+      Add Member
+      <form action='/groups/addMember/<%= groupData[0]["name"];%>' method="post">
+      Email
+      <input type="text" name="email" placeholder="Email" />
+      <br>
+      <button type="submit">Submit</button>
+      </form>
+   <% include ../../partials/footer %>
+   </body>
+</html>

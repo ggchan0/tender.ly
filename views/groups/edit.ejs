@@ -5,7 +5,7 @@
       EDIT GROUPS
       <ul>
       <% groupData.forEach(function(el, index) {%>
-         <li><%= el["name"];%></li>
+         <li><a href='/groups/group/<%= el["name"];%>'><%= el["name"];%></a></li>
       <%});%>
       </ul>
       </br>
