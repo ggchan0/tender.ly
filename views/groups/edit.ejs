@@ -4,12 +4,14 @@
    <body>
       EDIT GROUPS
       <ul>
+      <!-- Loops through and populated each group from gropData (sent in /edit get) -->
       <% groupData.forEach(function(el, index) {%>
          <li><a href='/groups/group/<%= el["name"];%>'><%= el["name"];%></a></li>
       <%});%>
       </ul>
       </br>
       Add New Group
+      <!-- post to /groups/add with the form -->
       <form action="/groups/add" method="post">
       Group Name
       <input type="text" name="groupName" placeholder="Group Name" />

@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 
 router.use(bodyParser.json());
 
+//router for groups (so /group/whatever is here)
+
 router.get('/', function(req, res, next) {
  res.render('groups');
 });
@@ -13,17 +15,22 @@ router.get('/view', function(req, res, next) {
  res.render('groups/view');
 });
 
+//serving a get req and responding with all groups that the owner owns
+//TODO Add google Auth email to owner
 router.get('/edit', function(req, res, next) {
    Group.find({ owner : 'Later' }, function(err, group) {
    if (err) throw err;
 
    // object of the user
    console.log(group);
+   //sends to edit.ejs
    res.render('groups/edit', { groupData : group });
    });
 
 });
 
+//Adds new group to database
+//TODO change onwer to google auth
 router.post('/add', function(req, res, next) {
    var gName = req.body.groupName;
 
@@ -39,6 +46,8 @@ router.post('/add', function(req, res, next) {
    res.redirect('/groups/edit');
 });
 
+//This is cool because it is a post with a generic URL that is handled with both
+//req.body.foo and req.params.name
 router.post('/addMember/:name', function(req, res, next) {
    var email = req.body.email;
 
@@ -57,6 +66,7 @@ router.post('/addMember/:name', function(req, res, next) {
 
 });
 
+//A more tradtional generic get request
 router.get('/group/:name', function(req, res) {
    Group.find({ name : req.params.name }, function(err, group) {
    if (err) throw err;

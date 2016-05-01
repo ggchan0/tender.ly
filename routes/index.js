@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
  res.render('index');
 });
 
+//gets anything to login and does nothing with it lol
 router.post('/login', function(req, res) {
   var userName = req.body.userName;
 
@@ -64,12 +65,14 @@ router.get('/profile', function(req, res) {
 });
 */
 
+//google auth root
 router.get('/auth/google', passport.authenticate('google', {
   scope: [
        'https://www.googleapis.com/auth/plus.login',
        'https://www.googleapis.com/auth/plus.profile.emails.read']
 }));
 
+//success or fail google route
 router.get('/auth/google/callback',
   passport.authenticate('google', {
     successRedirect : '/about',
@@ -77,6 +80,7 @@ router.get('/auth/google/callback',
   })
 );
 
+//used in /profile
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();

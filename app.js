@@ -14,6 +14,7 @@ mongoose.connect(configDB.url);
 
 var app = express();
 
+//importing our route files
 var index = require('./routes/index');
 var calendar = require('./routes/calendar');
 var groups = require('./routes/groups');
@@ -42,8 +43,7 @@ app.use(flash());
 
 var passportConfig = require('./config/passport');
 
-//call function in index route with passport
-
+//telling express to use our routes
 app.use('/', index);
 app.use('/calendar', calendar);
 app.use('/groups', groups);

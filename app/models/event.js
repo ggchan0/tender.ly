@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-var 
+//and event has an owner (TODO use google auth) and an array of timeslots that each
+//have a data and a group associated with them
 var eventSchema = mongoose.Schema({
    owner : String,
    timeSlot : [{
