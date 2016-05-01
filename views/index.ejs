@@ -12,12 +12,7 @@
 
   <link href='https://fonts.googleapis.com/css?family=Cabin:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
   <script src="js/modernizr.custom.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script type="text/javascript">
-    $(window).load(function() {
-	$(".loader").delay(2000).fadeOut("slow");
-     })
-   </script>
+
   </head>
   <body>
 
@@ -32,14 +27,14 @@
    </div>
     <div align="center" class="navcenter">
       <img class="mainLogo hvr-bob" src="images/mainLogoSkin.png" alt="Voluptuous">
-        
+
       <hr>
-      
+
       <nav class="cl-effect-1">
 					<a href="/auth/google">Login with Google</a>
 					<!--<a href="signup.ejs">Sign Up</a>-->
 				</nav>
-    </div>  
+    </div>
 <!--
 <div class="container login">
     <form action="/login" method="post">
@@ -50,6 +45,12 @@
     </form>
 </div>
 -->
+   <% include ../partials/footer %>
+   <script type="text/javascript">
+     $(window).load(function() {
+    $(".loader").delay(1).fadeOut("slow");
+      })
+    </script>
 
   </body>
 
