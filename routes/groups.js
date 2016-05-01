@@ -42,31 +42,18 @@ router.post('/add', function(req, res, next) {
 router.post('/addMember/:name', function(req, res, next) {
    var email = req.body.email;
 
-   function a (prevEmails) {
-
-      prevEmails.push(email);
-      console.log("INA" + ' ' + prevEmails);
-      Group.findOneAndUpdate({name: req.params.name }, {$set:{email:prevEmails}},function(err, doc){
-         if(err){
-            console.log("Something wrong when updating data!");
-         }
-
-         //console.log(doc);
+   Group.findOne({ name : req.params.name }, function(err, group) {
+   if (err) throw err;
+      if (!group.emails) {
+         group.emails = [];
+      }
+      group.emails.push(email);
+      group.save(function(err) {
+      if (err) throw err;
+         console.log('Group created!');
       });
       res.redirect('/groups/group/' + req.params.name);
-
-   }
-
-   Group.find({ name : req.params.name }, function(err, group) {
-   if (err) throw err;
-      console.log("HERE" + group[0]["emails"]);
-      a(group[0]["emails"]);
    });
-
-
-
-
-
 
 });
 
